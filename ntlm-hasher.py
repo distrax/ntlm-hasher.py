@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 import hashlib,binascii
 def ntlm(pw):
