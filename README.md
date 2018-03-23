@@ -1,10 +1,11 @@
-# ntlm-hasher.py
+# ntlm-hasher.py & hasher2.py
 Script to hash a wordlist into the Windows NTLM format line by line and print it to stdout.
 
 <del>Still having issues. I am able to add a word to the code and it will print out the correct hash but when running through the file the hashes are incorrect. I already stripped out the newline characters.</del>
 
-All is working. Maybe my other system has a python issue. I made almost no changes for it to work properly on two systems other than the first. 
+All is working. Issue was the file format was in dos creating a '\r' I didn't account for. In VIM ":set ff=unix" fixed the issue. 
 
-Next I want to add additional functions for various hashing algorithms and take user input to call the desired function from a dictionary. Then to provide the option to hash one passphrase through input as an alternative to the file loop if desired. 
+# hash3r.py
+Tool that can create hashes of words in a file, line by line, from various algorithms and write them to a new file or print to the terminal. 
 
 I'm aware that my proficiency is laughable no need to remind me. :)
