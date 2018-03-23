@@ -29,14 +29,17 @@ try:
     hash3r=int(hash3r)
 except:
     print('Not a valid hash choice.')
+    quit()
 pfile=input('Enter filename: ')
 try:
     pw=open(pfile)
 except:
     print('File not found.')
+    quit()
 create=input('Would you like the hashed passwords to be saved to a new file? Y or n: ').lower()
 if create[0] == 'y' or len(create)==0:
-    output=open(pfile+'hash.txt', "w")
+    x=str(algo[hash3r]).split(' ')
+    output=open(pfile+x[1]+'hash.txt', "w")
     for p in pw:
         if len(p)>0:
             p=p.rstrip('\n')
