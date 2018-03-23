@@ -3,13 +3,17 @@ import hashlib
 #Comprehensive python tool to hash wordlists and phrases
 #Function Section:
 def ntlm(pw):
-    print(hashlib.new('md4', pw.encode('utf-16le')).hexdigest())
+    h=hashlib.new('md4', pw.encode('utf-16le')).hexdigest()
+    return(h)
 def md5(pw):
-    print(hashlib.md5(pw.encode('utf-8')).hexdigest())
+    h=hashlib.md5(pw.encode('utf-8')).hexdigest()
+    return(h)
 def sha256(pw):
-    print(hashlib.sha256(pw.encode()).hexdigest())
+    h=hashlib.sha256(pw.encode()).hexdigest()
+    return(h)
 def sha512(pw):
-    print(hashlib.sha512(pw.encode()).hexdigest())
+    h=hashlib.sha512(pw.encode()).hexdigest()
+    return(h)
 algo={1:ntlm,
       2:md5,
       3:sha256,
@@ -30,8 +34,19 @@ try:
     pw=open(pfile)
 except:
     print('File not found.')
-for line in pw:
-    if len(line)>0:
-        line=line.rstrip('\n')
-        print(line)
-        algo[hash3r](line)
+create=input('Would you like the hashed passwords to be saved to a new file? Y or n: ').lower()
+if create[0] == 'y' or len(create)==0:
+    output=open(pfile+'hash.txt', "w")
+    for p in pw:
+        if len(p)>0:
+            p=p.rstrip('\n')
+            z=(algo[hash3r](p))
+            output.write(z+'\n')
+    output.close()
+else:
+    for line in pw:
+        if len(line)>0:
+            line=line.rstrip('\n')
+            print(line)
+            z=(algo[hash3r](line))
+            print(z)
