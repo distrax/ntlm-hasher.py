@@ -38,18 +38,18 @@ except:
 create=input('Would you like the hashed passwords to be saved to a new file? Y or n: ').lower()
 if create[0] == 'y' or len(create)==0:
     x=str(algo[hash3r]).split(' ')
-    fn=input("Enter name for new file: ") or pfile+x[1]+'hash.txt'
+    fn=input("Warning! Any file that has the same name will be replaced. Enter name for new file: ") or pfile+x[1]+'hash.txt'
     output=open(fn, "w")
     for p in pw:
         if len(p)>0:
-            p=p.rstrip('\n')
+            p=p.rstrip('\r\n')
             z=(algo[hash3r](p))
             output.write(z+'\n')
     output.close()
 else:
     for line in pw:
         if len(line)>0:
-            line=line.rstrip('\n')
+            line=line.rstrip('\r\n')
             print(line)
             z=(algo[hash3r](line))
             print(z)
