@@ -14,11 +14,14 @@ def sha256(pw):
 def sha512(pw):
     h=hashlib.sha512(pw.encode()).hexdigest()
     return(h)
+#Dictionary of functions
 algo={1:ntlm,
       2:md5,
       3:sha256,
       4:sha512,
       }
+print('Welcome to hash3r.py. This tool can be used to hash either a passphrase or a wordlist line by line.\n The wordlist must be formatted to have a desired phrase to hash per line.')
+#Hack to print options that will update with added functions
 for key, value in algo.items():
     val2=str(value)
     val2=val2.split(' ')
@@ -29,13 +32,14 @@ try:
 except:
     print('Not a valid hash choice.')
     quit()
-pfile=input('Enter filename: ')
+pfile=input('Enter a phrase to hash or the filename: ')
 try:
     pw=open(pfile)
-except:
-    print('File not found.')
+except:#Hash the input phrase if it's not a file
+    print(algo[hash3r](pfile))
     quit()
 create=input('Would you like the hashed passwords to be saved to a new file? Y or n: ').lower()
+#Hash the file line by line and write it to a file
 if create[0] == 'y' or len(create)==0:
     x=str(algo[hash3r]).split(' ')
     fn=input("Warning! Any file that has the same name will be replaced. Enter name for new file: ") or pfile+x[1]+'hash.txt'
@@ -46,7 +50,7 @@ if create[0] == 'y' or len(create)==0:
             z=(algo[hash3r](p))
             output.write(z+'\n')
     output.close()
-else:
+else:#Hash a file line by line and print it to stdout
     for line in pw:
         if len(line)>0:
             line=line.rstrip('\r\n')
