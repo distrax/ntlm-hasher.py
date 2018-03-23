@@ -19,11 +19,10 @@ algo={1:ntlm,
       3:sha256,
       4:sha512,
       }
-dos=[('1', 'ntlm'), ('2', 'md5'), ('3', 'sha256'), ('4', 'sha512')]
-#for k, v in algo.items():
-#    print(v)
-for a, b in dos:
-    print(a, '=', b)
+for key, value in algo.items():
+    val2=str(value)
+    val2=val2.split(' ')
+    print(key, ('='), val2[1])
 try:
     hash3r=input('Enter number corresponding to desired algorithm: ')
     hash3r=int(hash3r)
@@ -39,7 +38,8 @@ except:
 create=input('Would you like the hashed passwords to be saved to a new file? Y or n: ').lower()
 if create[0] == 'y' or len(create)==0:
     x=str(algo[hash3r]).split(' ')
-    output=open(pfile+x[1]+'hash.txt', "w")
+    fn=input("Enter name for new file: ") or pfile+x[1]+'hash.txt'
+    output=open(fn, "w")
     for p in pw:
         if len(p)>0:
             p=p.rstrip('\n')
