@@ -22,7 +22,8 @@ algo={1:ntlm,
       }
 print('Welcome to hash3r.py. This tool can be used to hash either a passphrase or a wordlist line by line. The wordlist must be formatted to have a desired phrase to hash per line.')
 #Hack to print options that will update with added functions
-while hash3r>4 or hash3r<0:
+hash3r=0
+while hash3r>len(algo) or hash3r<1:
     for key, value in algo.items():
         val2=str(value)
         val2=val2.split(' ')
@@ -32,8 +33,9 @@ while hash3r>4 or hash3r<0:
         hash3r=int(hash3r)
     except:
         print('Not a valid hash choice.')
-        quit()
-    if hash3r>4 or hash3r<0:
+        hash3r=0
+        continue
+    if hash3r>len(algo) or hash3r<1:
         print('Not in range of choices.')
 pfile=input('Enter a phrase to hash or the filename: ')
 try:
