@@ -20,18 +20,21 @@ algo={1:ntlm,
       3:sha256,
       4:sha512,
       }
-print('Welcome to hash3r.py. This tool can be used to hash either a passphrase or a wordlist line by line.\n The wordlist must be formatted to have a desired phrase to hash per line.')
+print('Welcome to hash3r.py. This tool can be used to hash either a passphrase or a wordlist line by line. The wordlist must be formatted to have a desired phrase to hash per line.')
 #Hack to print options that will update with added functions
-for key, value in algo.items():
-    val2=str(value)
-    val2=val2.split(' ')
-    print(key, ('='), val2[1])
-try:
-    hash3r=input('Enter number corresponding to desired algorithm: ')
-    hash3r=int(hash3r)
-except:
-    print('Not a valid hash choice.')
-    quit()
+while hash3r>4 or hash3r<0:
+    for key, value in algo.items():
+        val2=str(value)
+        val2=val2.split(' ')
+        print(key, ('='), val2[1])
+    try:
+        hash3r=input('Enter a number corresponding to desired algorithm: ')
+        hash3r=int(hash3r)
+    except:
+        print('Not a valid hash choice.')
+        quit()
+    if hash3r>4 or hash3r<0:
+        print('Not in range of choices.')
 pfile=input('Enter a phrase to hash or the filename: ')
 try:
     pw=open(pfile)
