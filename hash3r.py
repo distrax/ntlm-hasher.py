@@ -3,17 +3,13 @@ import hashlib
 #Comprehensive python tool to hash wordlists and phrases
 #Function Section:
 def ntlm(pw):
-    h=hashlib.new('md4', pw.encode('utf-16le')).hexdigest()
-    return(h)
+    return(hashlib.new('md4', pw.encode('utf-16le')).hexdigest())
 def md5(pw):
-    h=hashlib.md5(pw.encode('utf-8')).hexdigest()
-    return(h)
+    return(hashlib.md5(pw.encode('utf-8')).hexdigest())
 def sha256(pw):
-    h=hashlib.sha256(pw.encode()).hexdigest()
-    return(h)
+    return(hashlib.sha256(pw.encode()).hexdigest())
 def sha512(pw):
-    h=hashlib.sha512(pw.encode()).hexdigest()
-    return(h)
+    return(hashlib.sha512(pw.encode()).hexdigest())
 #Dictionary of functions
 algo={1:ntlm,
       2:md5,
