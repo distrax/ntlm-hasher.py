@@ -47,16 +47,13 @@ if create[0] == 'y' or len(create)==0:
     x=str(algo[hash3r]).split(' ')
     fn=input("Warning! Any file that has the same name will be replaced. Enter name for new file: ") or pfile+x[1]+'hash.txt'
     output=open(fn, "w")
-    for p in pw:
-        if len(p)>0:
-            p=p.rstrip('\r\n')
-            z=(algo[hash3r](p))
-            output.write(z+'\n')
+    for line in pw:
+        if len(line)>0:
+            output.write(algo[hash3r](line.rstrip('\r\n'))+('\n'))
     output.close()
 else:#Hash a file line by line and print it to stdout
     for line in pw:
         if len(line)>0:
             line=line.rstrip('\r\n')
             print(line)
-            z=(algo[hash3r](line))
-            print(z)
+            print(algo[hash3r](line))
